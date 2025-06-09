@@ -1,0 +1,21 @@
+# Gradle
+.gradle/
+build/
+
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# OS dosyaları
+.DS_Store
+Thumbs.db
+
+# Java
+*.class
+
+# Logs
+*.log
+
+# Minecraft output
+*.jar

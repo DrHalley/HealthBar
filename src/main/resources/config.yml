@@ -1,0 +1,7 @@
+bar:
+  title: "&c❤️ %name% - %health% HP"
+  style: "SOLID"
+  color-high: "GREEN"
+  color-medium: "YELLOW"
+  color-low: "RED"
+  timeout: 60
