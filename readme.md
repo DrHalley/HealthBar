@@ -32,3 +32,6 @@ bar:
 
 - `%name%`: Target entity name
 - `%health%`: Remaining health(integer)
+
+## Video
+- https://youtu.be/aQa3V04RYhU
