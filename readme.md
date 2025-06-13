@@ -11,6 +11,7 @@ A lightweight Minecraft plugin that displays a BossBar showing the health of any
 ## ✨ Features
 
 - Displays target entity's remaining health in a BossBar
+- Also shows target's health on a hologram
 - Health bar changes color based on percentage (green, yellow, red)
 - Auto-hides after a few seconds
 - Fully configurable via `config.yml`
