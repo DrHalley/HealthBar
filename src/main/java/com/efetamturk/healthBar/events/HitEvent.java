@@ -40,7 +40,7 @@ public class HitEvent implements Listener {
         }
         bossbar.setColor(color);
     }
-
+    //bossbar
     @EventHandler
     public void playerHitEvent(EntityDamageByEntityEvent event) {
         if (event.getDamager() instanceof Player) {
@@ -61,7 +61,7 @@ public class HitEvent implements Listener {
                     bossbar = HealthBar.activeBars.get(player);
                     String rawTitle = plugin.getConfig().getString("bar.title");
                     String formattedTitle = ChatColor.translateAlternateColorCodes('&',
-                            rawTitle.replace("%name%", entity.getName())
+                            rawTitle.replace("%name%", entity.getType().name())
                                     .replace("%health%", String.valueOf((int) finalHealth))
                     );
                     bossbar.setTitle(formattedTitle);
@@ -74,7 +74,7 @@ public class HitEvent implements Listener {
                 bossbar = Bukkit.createBossBar("Entity Health", BarColor.RED, BarStyle.SOLID);
                 String rawTitle = plugin.getConfig().getString("bar.title");
                 String formattedTitle = ChatColor.translateAlternateColorCodes('&',
-                        rawTitle.replace("%name%", entity.getName())
+                        rawTitle.replace("%name%", entity.getType().name())
                                 .replace("%health%", String.valueOf((int) finalHealth))
                 );
                 bossbar.setTitle(formattedTitle);
@@ -92,6 +92,29 @@ public class HitEvent implements Listener {
             }.runTaskLater(plugin, 60L); // 3 saniye (60 tick)
         }
 
+
+    }
+    //hologram
+    @EventHandler
+    public void playerDamageEvent(EntityDamageByEntityEvent event) {
+        if (event.getDamager() instanceof Player) {
+            Player player = (Player) event.getDamager();
+            Entity entity = event.getEntity();
+            if (!(entity instanceof LivingEntity)) return;
+            LivingEntity livingEntity = (LivingEntity) entity;
+            double damage = event.getFinalDamage();
+            double finalHealth = Math.max(0, livingEntity.getHealth() - damage); //
+            double maxHealth = livingEntity.getAttribute(Attribute.MAX_HEALTH).getValue();
+            String healthDisplay = ChatColor.RED + "❤ " + (int) finalHealth + "/" + maxHealth;
+            entity.setCustomNameVisible(true);
+            entity.setCustomName(healthDisplay);
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    entity.setCustomNameVisible(false);
+                }
+            }.runTaskLater(plugin, 60L);
+        }
 
     }
 
